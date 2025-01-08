@@ -69,8 +69,10 @@ The console displays real-time price updates with color coding:
 - Bold: Significant price changes (>$100 for Bitcoin, >$0.1 for Solana)
 
 Example output:
+```
 2024-02-20 10:30:01,52000.00,52010.50,51995.00,52005.25,1.23456789
 2024-02-20 10:30:02,52005.25,52015.75,52000.00,52010.00,0.98765432
+```
 
 ## Stopping the Service
 
