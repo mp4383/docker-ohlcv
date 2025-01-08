@@ -1,0 +1,18 @@
+services:
+  solana_feed:
+    build: .
+    restart: always
+    volumes:
+      - .:/app
+    environment:
+      - TZ=America/Chicago
+
+  bitcoin_feed:
+    build: 
+      context: .
+      dockerfile: Dockerfile.bitcoin
+    restart: always
+    volumes:
+      - .:/app
+    environment:
+      - TZ=America/Chicago
