@@ -5,6 +5,7 @@ import logging
 
 class DataUploader:
     def __init__(self, bucket_name: str, local_retention_days: int = 7):
+        # boto3 will automatically use the instance role
         self.s3 = boto3.client('s3')
         self.bucket = bucket_name
         self.retention_days = local_retention_days

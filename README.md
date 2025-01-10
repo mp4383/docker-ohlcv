@@ -113,13 +113,29 @@ sudo systemctl enable docker
 sudo usermod -a -G docker ubuntu
 ```
 
-### 3. Configure AWS Credentials
-Create a `.env` file in your project directory:
+### 3. Configure AWS Access
+Create an IAM Role for your EC2 instance with the following permissions:
+```json
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "s3:PutObject",
+                "s3:GetObject",
+                "s3:ListBucket"
+            ],
+            "Resource": [
+                "arn:aws:s3:::your-bucket-name",
+                "arn:aws:s3:::your-bucket-name/*"
+            ]
+        }
+    ]
+}
 ```
-AWS_ACCESS_KEY_ID=your_access_key
-AWS_SECRET_ACCESS_KEY=your_secret_key
-AWS_DEFAULT_REGION=your_region
-```
+
+Attach this role to your EC2 instance when launching or through the AWS Console.
 
 ### 4. Deploy Application
 ```bash
