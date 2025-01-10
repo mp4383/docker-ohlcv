@@ -12,11 +12,15 @@ Real-time cryptocurrency price monitoring system that collects and stores 1-seco
 
 ## AWS Deployment
 
-### 1. EC2 Setup
+### 1. EC2 Setup and S3 Bucket Setup
 Launch an EC2 instance:
 - Instance type: t2.micro (whatever is cheapest/free)
 - OS: Amazon Linux 2023
 - Security group: Allow outbound traffic
+
+Create a new S3 bucket:
+- Name: ohclv-mp (default)
+- Region: us-east-1
 
 ### 2. IAM Role
 - Create a new IAM role that has S3 read/write permissions
@@ -53,7 +57,7 @@ cd docker-ohlcv
 # Create data directory
 mkdir -p data
 
-# Configure symbols
+# Configure symbols and s3 bucket
 nano config.yml
 
 # Build and start
