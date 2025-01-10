@@ -118,7 +118,15 @@ class PriceFeed:
 
     async def upload_task(self):
         """Periodic upload to S3"""
-        uploader = DataUploader('your-bucket-name')
+        # Load config
+        with open('config.yml', 'r') as f:
+            config = yaml.safe_load(f)
+        
+        bucket_name = config.get('s3', {}).get('bucket_name')
+        if not bucket_name:
+            raise ValueError("S3 bucket name not configured in config.yml")
+        
+        uploader = DataUploader(bucket_name)
         while True:
             await asyncio.sleep(3600)  # Upload every hour
             await uploader.upload_and_cleanup()

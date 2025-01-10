@@ -1,4 +1,7 @@
 symbols:
   - btcusdt
   - solusdt
-  # Add more trading pairs as needed 
+  # Add more trading pairs as needed
+
+s3:
+  bucket_name: ohclv-mp 
