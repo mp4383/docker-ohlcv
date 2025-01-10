@@ -1,18 +1,13 @@
-services:
-  solana_feed:
-    build: .
-    restart: always
-    volumes:
-      - .:/app
-    environment:
-      - TZ=America/Chicago
+version: '3'
 
-  bitcoin_feed:
-    build: 
-      context: .
-      dockerfile: Dockerfile.bitcoin
-    restart: always
+services:
+  price_feed:
+    build: .
     volumes:
-      - .:/app
+      - ./data:/app/data
+      - ./config.yml:/app/config.yml
     environment:
-      - TZ=America/Chicago
+      - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
+      - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
+      - AWS_DEFAULT_REGION=${AWS_DEFAULT_REGION}
+    restart: unless-stopped
